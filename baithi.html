@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="1000" style="border: 1px solid"></canvas>
+</body>
+</html>
+
+<script>
+    function findTop3(arr) {
+        let max1 = 0;
+        let max2 = 0;
+        let max3 = 0;
+
+        // tìm được số lớn nhất
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > max1) {
+                max1 = arr[i];
+            }
+        }
+        // tìm được số lớn thứ 2
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > max2 && arr[i] < max1) {
+                max2 = arr[i];
+            }
+        }
+        // tìm được số lớn thứ 3
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > max3 && arr[i] < max2) {
+                max3 = arr[i];
+            }
+        }
+        return max3;
+    }
+
+    let arr = [1, 2, 3, 4, 8]
+    // alert(findTop3(arr));
+
+
+    function tryRemoveFromArray(arr, index) {
+        if (index >= 0 && index < arr.length) {
+            let newArr = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (i != index) {
+                    newArr.push(arr[i]);
+                }
+            }
+            arr = newArr;
+        }
+        return arr;
+    }
+
+
+    function isFindStr(str1, str2) {
+        let isCheck = false;
+        for (let i = 0; i < str1.length; i++) {
+            if (str1[i] === str2[0]) {
+                for (let j = 1; j < str2.length; j++) {
+                    if (str2[j] !== str1[i + j]) {
+                        isCheck = false;
+                        break;
+                    } else {
+                        isCheck = true;
+                    }
+                }
+            }
+        }
+        return isCheck;
+    }
+
+
+    class Rectangle{
+        constructor(x,y,width,heigth,color) {
+            this.x = x
+            this.y = y
+            this.width = width
+            this.heigth = heigth
+            this.color = color;
+        }
+        render(canvas){
+            let ctx = canvas.getContext("2d");
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x,this.y,this.width,this.heigth);
+        }
+    }
+
+    let canvas = document.getElementById("myCanvas");
+
+    let rectangle1 = new Rectangle(100,200,200,150,'red');
+    rectangle1.render(canvas);
+
+    let rectangle2 = new Rectangle(10,20,20,15,'red');
+    rectangle2.render(canvas);
+
+
+
+</script>
+
